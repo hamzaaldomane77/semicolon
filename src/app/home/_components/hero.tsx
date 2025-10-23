@@ -1,15 +1,30 @@
 
 "use client";
 
-import LiquidEther from '@/components/LiquidEther'
 import BubbleMenu from '@/components/BubbleMenu'
 import BlurText from '@/components/BlurText'
 import TextType  from '@/components/TextType'
-import PixelBlast from '@/components/PixelBlast'
+import { LazyLiquidEther, LazyPixelBlast } from './lazy-components'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-const page = () => {
+const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Check on mount
+    checkMobile();
+    
+    // Add event listener for resize
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const handleAnimationComplete = () => {
     console.log('Animation completed!');
   };
@@ -71,42 +86,45 @@ const page = () => {
     staggerDelay={0.12}
     className='sm:pl-10'
   />
-  {/* PixelBlast Background - Under Logo & Menu */}
-  <div className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
-    <PixelBlast
-      variant="circle"
-      pixelSize={6}
-      color="#B19EEF"
-      patternScale={3}
-      patternDensity={1.2}
-      pixelSizeJitter={0.5}
-      enableRipples
-      rippleSpeed={0.4}
-      rippleThickness={0.12}
-      rippleIntensityScale={1.5}
-      liquid
-      liquidStrength={0.12}
-      liquidRadius={1.2}
-      liquidWobbleSpeed={5}
-      speed={0.6}
-      edgeFade={0.25}
-      transparent
-    />
-  </div>
+  {/* PixelBlast Background - Hidden on Mobile for Performance */}
+  {!isMobile && (
+    <div className="absolute inset-0 w-full h-full hidden md:block" style={{ zIndex: 1 }}>
+      <LazyPixelBlast
+        variant="circle"
+        pixelSize={6}
+        color="#B19EEF"
+        patternScale={3}
+        patternDensity={1.2}
+        pixelSizeJitter={0.5}
+        enableRipples
+        rippleSpeed={0.4}
+        rippleThickness={0.12}
+        rippleIntensityScale={1.5}
+        liquid
+        liquidStrength={0.12}
+        liquidRadius={1.2}
+        liquidWobbleSpeed={5}
+        speed={0.6}
+        edgeFade={0.25}
+        transparent
+        autoPauseOffscreen={true}
+      />
+    </div>
+  )}
 
-  <LiquidEther
+  <LazyLiquidEther
     colors={[ '#5227FF', '#FF9FFC', '#B19EEF' ]}
-    mouseForce={20}
-    cursorSize={100}
+    mouseForce={isMobile ? 10 : 20}
+    cursorSize={isMobile ? 50 : 100}
     isViscous={true}
-    viscous={30}
-    iterationsViscous={32}
-    iterationsPoisson={32}
-    resolution={0.5}
+    viscous={isMobile ? 20 : 30}
+    iterationsViscous={isMobile ? 16 : 32}
+    iterationsPoisson={isMobile ? 16 : 32}
+    resolution={isMobile ? 0.3 : 0.5}
     isBounce={true}
     autoDemo={true}
     autoSpeed={0.5}
-    autoIntensity={2.2}
+    autoIntensity={isMobile ? 1.5 : 2.2}
     takeoverDuration={0.25}
     autoResumeDelay={3000}
     autoRampDuration={0.6}
@@ -147,4 +165,4 @@ const page = () => {
 </div>  )
 }
 
-export default page
+export default Hero

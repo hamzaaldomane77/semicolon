@@ -1,7 +1,7 @@
 "use client";
 
 import GradientText from '@/components/GradientText';
-import MagicBento from '@/components/MagicBento'
+import { LazyMagicBento } from './lazy-components'
 import { motion } from 'framer-motion'
 
 const Services = () => {
@@ -93,7 +93,7 @@ const Services = () => {
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <MagicBento 
+          <LazyMagicBento 
             textAutoHide={true}
             enableStars={true}
             enableSpotlight={true}

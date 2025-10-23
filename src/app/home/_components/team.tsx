@@ -1,7 +1,7 @@
 "use client";
 
 import GradientText from '@/components/GradientText';
-import ChromaGrid from '@/components/ChromaGrid';
+import { LazyChromaGrid } from './lazy-components';
 import { motion } from 'framer-motion';
 
 const Team = () => {
@@ -79,7 +79,7 @@ const Team = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <div style={{ minHeight: '600px', position: 'relative' }}>
-            <ChromaGrid 
+            <LazyChromaGrid 
               items={teamMembers}
               radius={300}
               damping={0.45}

@@ -9,6 +9,26 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
+      },
+    ],
+    formats: ['image/avif', 'image/webp'],
+  },
+  // تحسين الأداء
+  swcMinify: true,
+  compress: true,
+  productionBrowserSourceMaps: false,
+  experimental: {
+    optimizePackageImports: ['gsap', 'three', 'framer-motion'],
+  },
 };
 
 export default nextConfig;
