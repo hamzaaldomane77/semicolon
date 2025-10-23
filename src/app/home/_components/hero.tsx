@@ -112,27 +112,29 @@ const Hero = () => {
     </div>
   )}
 
-  <LazyLiquidEther
-    colors={[ '#5227FF', '#FF9FFC', '#B19EEF' ]}
-    mouseForce={isMobile ? 10 : 20}
-    cursorSize={isMobile ? 50 : 100}
-    isViscous={true}
-    viscous={isMobile ? 20 : 30}
-    iterationsViscous={isMobile ? 16 : 32}
-    iterationsPoisson={isMobile ? 16 : 32}
-    resolution={isMobile ? 0.3 : 0.5}
-    isBounce={true}
-    autoDemo={true}
-    autoSpeed={0.5}
-    autoIntensity={isMobile ? 1.5 : 2.2}
-    takeoverDuration={0.25}
-    autoResumeDelay={3000}
-    autoRampDuration={0.6}
-    style={{ zIndex: 2 }}
-  />
+  {/* LiquidEther Background - Works on Mobile */}
+  <div className="absolute inset-0 w-full h-full" style={{ zIndex: 2 }}>
+    <LazyLiquidEther
+      colors={[ '#5227FF', '#FF9FFC', '#B19EEF' ]}
+      mouseForce={isMobile ? 10 : 20}
+      cursorSize={isMobile ? 50 : 100}
+      isViscous={true}
+      viscous={isMobile ? 20 : 30}
+      iterationsViscous={isMobile ? 16 : 32}
+      iterationsPoisson={isMobile ? 16 : 32}
+      resolution={isMobile ? 0.3 : 0.5}
+      isBounce={true}
+      autoDemo={true}
+      autoSpeed={0.5}
+      autoIntensity={isMobile ? 1.5 : 2.2}
+      takeoverDuration={0.25}
+      autoResumeDelay={3000}
+      autoRampDuration={0.6}
+    />
+  </div>
   
   {/* Hero Text */}
-  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center pointer-events-none w-full px-4">
+  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none w-full px-4" style={{ zIndex: 10 }}>
     <div className="space-y-4 md:space-y-6">
       <BlurText
         text="At Semicolon, we go from analysis to code — launching ideas into success."
