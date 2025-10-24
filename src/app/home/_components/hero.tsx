@@ -86,59 +86,41 @@ const Hero = () => {
     staggerDelay={0.12}
     className='sm:pl-10'
   />
-  {/* Prism Background - Desktop Only for Performance */}
-  {!isMobile && (
-    <div className="absolute inset-0 w-full h-full hidden md:block" style={{ zIndex: 1 }}>
-      <LazyPrism
-        animationType="rotate"
-        timeScale={0.4}
-        height={3.5}
-        baseWidth={5.5}
-        scale={3.6}
-        hueShift={0}
-        colorFrequency={1}
-        noise={0.5}
-        glow={1}
-      />
-    </div>
-  )}
-  
-  {/* Simple Gradient Background for Mobile */}
-  {isMobile && (
-    <div 
-      className="absolute inset-0 w-full h-full md:hidden" 
-      style={{ 
-        zIndex: 1,
-        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #2d1b69 100%)',
-        animation: 'gradientShift 15s ease infinite'
-      }}
+  {/* Prism Background - All Devices */}
+  <div className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
+    <LazyPrism
+      animationType="rotate"
+      timeScale={isMobile ? 0.3 : 0.4}
+      height={isMobile ? 2.5 : 3.5}
+      baseWidth={isMobile ? 4 : 5.5}
+      scale={isMobile ? 2.5 : 3.6}
+      hueShift={0}
+      colorFrequency={1}
+      noise={isMobile ? 0.3 : 0.5}
+      glow={isMobile ? 0.7 : 1}
     />
-  )}
-  
-  <style jsx>{`
-    @keyframes gradientShift {
-      0%, 100% {
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #2d1b69 100%);
-      }
-      50% {
-        background: linear-gradient(135deg, #2d1b69 0%, #533483 25%, #0f3460 50%, #16213e 75%, #1a1a2e 100%);
-      }
-    }
-  `}</style>
+  </div>
   
   {/* Hero Text */}
   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none w-full px-4" style={{ zIndex: 10 }}>
     <div className="space-y-4 md:space-y-6">
-      <BlurText
-        text="At Semicolon, we go from analysis to code — launching ideas into success."
-        delay={150}
-        animateBy="words"
-        direction="top"
-        onAnimationComplete={handleAnimationComplete}
-        className="lg:pl-32 pl-6 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-center tracking-tight leading-tight text-white drop-shadow-lg px-2"
-      />
+      {/* Main Heading */}
+      {isMobile ? (
+        <h1 className="font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-center tracking-tight leading-tight text-white drop-shadow-lg px-4 sm:px-6 md:px-8 max-w-4xl mx-auto">
+          At Semicolon, we go from analysis to code — launching ideas into success.
+        </h1>
+      ) : (
+        <BlurText
+          text="At Semicolon, we go from analysis to code — launching ideas into success."
+          delay={150}
+          animateBy="words"
+          direction="top"
+          onAnimationComplete={handleAnimationComplete}
+          className="font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-center tracking-tight leading-tight text-white drop-shadow-lg px-4 sm:px-6 md:px-8 max-w-4xl mx-auto"
+        />
+      )}
       
-      <div className="text-sm sm:text-base md:text-lg lg:text-xl text-white/80 font-light">
+      <div className="text-xs sm:text-sm md:text-base lg:text-lg text-white/80 font-light max-w-3xl mx-auto px-2">
         <TextType 
          text={[
           "Custom Website Development",
