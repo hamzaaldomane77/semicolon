@@ -86,20 +86,44 @@ const Hero = () => {
     staggerDelay={0.12}
     className='sm:pl-10'
   />
-  {/* Prism Background - Optimized for All Devices */}
-  <div className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
-    <LazyPrism
-      animationType="rotate"
-      timeScale={isMobile ? 0.15 : 0.4}
-      height={isMobile ? 2 : 3.5}
-      baseWidth={isMobile ? 3.5 : 5.5}
-      scale={isMobile ? 2 : 3.6}
-      hueShift={0}
-      colorFrequency={1}
-      noise={isMobile ? 0.15 : 0.5}
-      glow={isMobile ? 0.4 : 1}
-    />
-  </div>
+  {/* Background Image for Mobile */}
+  {isMobile && (
+    <div 
+      className="absolute inset-0 w-full h-full md:hidden"
+      style={{ 
+        zIndex: 1,
+        backgroundImage: 'url(/pngtree-computer-of-a-programmer-with-lines-code-of-software-image_15746003.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Dark overlay for better text readability */}
+      <div 
+        className="absolute inset-0 w-full h-full"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6))'
+        }}
+      />
+    </div>
+  )}
+
+  {/* Prism Background - Desktop and Tablet */}
+  {!isMobile && (
+    <div className="absolute inset-0 w-full h-full hidden md:block" style={{ zIndex: 1 }}>
+      <LazyPrism
+        animationType="rotate"
+        timeScale={0.4}
+        height={3.5}
+        baseWidth={5.5}
+        scale={3.6}
+        hueShift={0}
+        colorFrequency={1}
+        noise={0.5}
+        glow={1}
+      />
+    </div>
+  )}
   
   {/* Hero Text */}
   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none w-full px-4" style={{ zIndex: 10 }}>
