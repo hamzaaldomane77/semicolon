@@ -86,18 +86,18 @@ const Hero = () => {
     staggerDelay={0.12}
     className='sm:pl-10'
   />
-  {/* Prism Background - All Devices */}
+  {/* Prism Background - Optimized for All Devices */}
   <div className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
     <LazyPrism
       animationType="rotate"
-      timeScale={isMobile ? 0.3 : 0.4}
-      height={isMobile ? 2.5 : 3.5}
-      baseWidth={isMobile ? 4 : 5.5}
-      scale={isMobile ? 2.5 : 3.6}
+      timeScale={isMobile ? 0.15 : 0.4}
+      height={isMobile ? 2 : 3.5}
+      baseWidth={isMobile ? 3.5 : 5.5}
+      scale={isMobile ? 2 : 3.6}
       hueShift={0}
       colorFrequency={1}
-      noise={isMobile ? 0.3 : 0.5}
-      glow={isMobile ? 0.7 : 1}
+      noise={isMobile ? 0.15 : 0.5}
+      glow={isMobile ? 0.4 : 1}
     />
   </div>
   
