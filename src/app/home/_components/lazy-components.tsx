@@ -43,3 +43,11 @@ export const LazyChromaGrid = dynamic(
   }
 );
 
+export const LazyPrism = dynamic(
+  () => import('@/components/Prism'),
+  {
+    ssr: false,
+    loading: () => <div className="w-full h-full bg-black" />
+  }
+);
+

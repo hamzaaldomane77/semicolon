@@ -4,7 +4,7 @@
 import BubbleMenu from '@/components/BubbleMenu'
 import BlurText from '@/components/BlurText'
 import TextType  from '@/components/TextType'
-import { LazyLiquidEther, LazyPixelBlast } from './lazy-components'
+import { LazyPrism } from './lazy-components'
 
 import React, { useState, useEffect } from 'react'
 
@@ -86,50 +86,18 @@ const Hero = () => {
     staggerDelay={0.12}
     className='sm:pl-10'
   />
-  {/* PixelBlast Background - Hidden on Mobile for Performance */}
-  {!isMobile && (
-    <div className="absolute inset-0 w-full h-full hidden md:block" style={{ zIndex: 1 }}>
-      <LazyPixelBlast
-        variant="circle"
-        pixelSize={6}
-        color="#B19EEF"
-        patternScale={3}
-        patternDensity={1.2}
-        pixelSizeJitter={0.5}
-        enableRipples
-        rippleSpeed={0.4}
-        rippleThickness={0.12}
-        rippleIntensityScale={1.5}
-        liquid
-        liquidStrength={0.12}
-        liquidRadius={1.2}
-        liquidWobbleSpeed={5}
-        speed={0.6}
-        edgeFade={0.25}
-        transparent
-        autoPauseOffscreen={true}
-      />
-    </div>
-  )}
-
-  {/* LiquidEther Background - Works on Mobile */}
-  <div className="absolute inset-0 w-full h-full" style={{ zIndex: 2 }}>
-    <LazyLiquidEther
-      colors={[ '#5227FF', '#FF9FFC', '#B19EEF' ]}
-      mouseForce={isMobile ? 10 : 20}
-      cursorSize={isMobile ? 50 : 100}
-      isViscous={true}
-      viscous={isMobile ? 20 : 30}
-      iterationsViscous={isMobile ? 16 : 32}
-      iterationsPoisson={isMobile ? 16 : 32}
-      resolution={isMobile ? 0.3 : 0.5}
-      isBounce={true}
-      autoDemo={true}
-      autoSpeed={0.5}
-      autoIntensity={isMobile ? 1.5 : 2.2}
-      takeoverDuration={0.25}
-      autoResumeDelay={3000}
-      autoRampDuration={0.6}
+  {/* Prism Background - Optimized for Mobile */}
+  <div className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
+    <LazyPrism
+      animationType="rotate"
+      timeScale={isMobile ? 0.3 : 0.5}
+      height={isMobile ? 2.5 : 3.5}
+      baseWidth={isMobile ? 4 : 5.5}
+      scale={isMobile ? 2.5 : 3.6}
+      hueShift={0}
+      colorFrequency={1}
+      noise={isMobile ? 0.3 : 0.5}
+      glow={isMobile ? 0.7 : 1}
     />
   </div>
   
