@@ -86,20 +86,45 @@ const Hero = () => {
     staggerDelay={0.12}
     className='sm:pl-10'
   />
-  {/* Prism Background - Optimized for Mobile */}
-  <div className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
-    <LazyPrism
-      animationType="rotate"
-      timeScale={isMobile ? 0.3 : 0.5}
-      height={isMobile ? 2.5 : 3.5}
-      baseWidth={isMobile ? 4 : 5.5}
-      scale={isMobile ? 2.5 : 3.6}
-      hueShift={0}
-      colorFrequency={1}
-      noise={isMobile ? 0.3 : 0.5}
-      glow={isMobile ? 0.7 : 1}
+  {/* Prism Background - Desktop Only for Performance */}
+  {!isMobile && (
+    <div className="absolute inset-0 w-full h-full hidden md:block" style={{ zIndex: 1 }}>
+      <LazyPrism
+        animationType="rotate"
+        timeScale={0.4}
+        height={3.5}
+        baseWidth={5.5}
+        scale={3.6}
+        hueShift={0}
+        colorFrequency={1}
+        noise={0.5}
+        glow={1}
+      />
+    </div>
+  )}
+  
+  {/* Simple Gradient Background for Mobile */}
+  {isMobile && (
+    <div 
+      className="absolute inset-0 w-full h-full md:hidden" 
+      style={{ 
+        zIndex: 1,
+        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #2d1b69 100%)',
+        animation: 'gradientShift 15s ease infinite'
+      }}
     />
-  </div>
+  )}
+  
+  <style jsx>{`
+    @keyframes gradientShift {
+      0%, 100% {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #2d1b69 100%);
+      }
+      50% {
+        background: linear-gradient(135deg, #2d1b69 0%, #533483 25%, #0f3460 50%, #16213e 75%, #1a1a2e 100%);
+      }
+    }
+  `}</style>
   
   {/* Hero Text */}
   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none w-full px-4" style={{ zIndex: 10 }}>
