@@ -5,6 +5,7 @@ import Services from './_components/services'
 import Projects from './_components/projects'
 import Team from './_components/team'
 import Technologies from './_components/technologies'
+import Footer from './_components/footer'
 import React from 'react'
 
 const page = () => {
@@ -28,6 +29,7 @@ const page = () => {
       <div id="technologies">
         <Technologies />
       </div>
+      <Footer />
     </div>
   )
 }
